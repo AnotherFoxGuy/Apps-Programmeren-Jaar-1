@@ -14,34 +14,65 @@ namespace WeekTwo
     [DesignTimeVisible(true)]
     public partial class MainPage : ContentPage
     {
-        ObservableCollection<Movie> movies = new ObservableCollection<Movie>();
-
+        DatabaseManager _databaseManager;
         public MainPage()
         {
             InitializeComponent();
+            _databaseManager = new DatabaseManager();
+            MovieList.ItemsSource = _databaseManager.GetAllMovies();
+        }
 
-            movies.Add(new Movie
+        private void DeleteButton_Clicked(object sender, EventArgs e)
+        {
+            if (!_databaseManager.DoesMovieExist(MovieTitle.Text))
             {
-                Title = "The Avengers (2012)",
-                Description = "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity."
-            });
-            movies.Add(new Movie
-            {
-                Title = "The Avengers: Age of Ultron (2015)",
-                Description = "When Tony Stark and Bruce Banner try to jump-start a dormant peacekeeping program called Ultron, things go horribly wrong and it's up to Earth's mightiest heroes to stop the villainous Ultron from enacting his terrible plan."
-            });
-            movies.Add(new Movie
-            {
-                Title = "The Avengers: Infinity War (2018)",
-                Description = "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe."
-            });
-            movies.Add(new Movie
-            {
-                Title = "The Avengers: End Game (2019)",
-                Description = "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to undo Thanos' actions and restore order to the universe."
-            });
+                DisplayAlert("Bestaat niet!", "Controleer de titel", "OK");
+                return;
+            }
 
-            MovieList.ItemsSource = movies;
+            _databaseManager.DeleteMovie(MovieTitle.Text);
+            MovieList.ItemsSource = _databaseManager.GetAllMovies();
+            MovieTitle.Text = "";
+            MovieDescription.Text = "";
+            MovieImage.Text = "";
+
+        }
+        private void AddUpdateButton_Clicked(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(MovieTitle.Text))
+            {
+                DisplayAlert("Verplicht veld!", "Voer een titelnaam in", "OK");
+                return;
+            }
+            else if (String.IsNullOrEmpty(MovieDescription.Text))
+            {
+                DisplayAlert("Verplicht veld!", "Voeg een omschrijving toe", "OK");
+                return;
+            }
+            else if (String.IsNullOrEmpty(MovieImage.Text))
+            {
+                DisplayAlert("Verplicht veld!", "Voer een afbeeldingnaam in", "OK");
+                return;
+            }
+
+            _databaseManager.AddOrUpdateMovie(MovieTitle.Text, MovieDescription.Text, MovieImage.Text);
+            MovieList.ItemsSource = _databaseManager.GetAllMovies();
+            MovieTitle.Text = "";
+            MovieDescription.Text = "";
+            MovieImage.Text = "";
+            
+        }
+
+        private void MovieList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var selectedMovie = e.SelectedItem as Movie;
+
+            if (selectedMovie == null)
+                return;
+
+            MovieTitle.Text = selectedMovie.Title;
+            MovieDescription.Text = selectedMovie.Description;
+            MovieImage.Text = selectedMovie.ImageSource;
         }
     }
 }

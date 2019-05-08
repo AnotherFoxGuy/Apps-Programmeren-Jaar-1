@@ -5,17 +5,40 @@
              x:Class="WeekTwo.MainPage">
 
 
-    <ListView x:Name="MovieList" RowHeight="100">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout Margin="4"  >
-                        <Label x:Name="MpTitle" FontSize="16" Text="{Binding Title}" Margin="8,8"></Label>
-                        <Label x:Name="MpDescription" FontSize="8" Text="{Binding Description}" Margin="8,8"></Label>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <StackLayout>
+        <ListView x:Name="MovieList" RowHeight="100" ItemSelected="MovieList_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="4">
+                            <Image Source="{Binding ImageSource}" WidthRequest="64"/>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Title}"
+                                   FontSize="16"
+                                   Margin="8,8"/>
+
+                                <Label Text="{Binding Description}"
+                                   FontSize="8"
+                                   Margin="8,8"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Entry x:Name="MovieTitle" Placeholder="Titel"/>
+        <Entry x:Name="MovieDescription" Placeholder="Omschrijving"/>
+        <Entry x:Name="MovieImage" Placeholder="Afbeelding.jpg"/>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,16,0,16">
+            <Button x:Name="DeleteButton"
+                    Text="Delete"
+                    Clicked="DeleteButton_Clicked"/>
+            <Button x:Name="AddUpdateButton"
+                    Text="Add/Update"
+                    Clicked="AddUpdateButton_Clicked"/>
+        </StackLayout>
+    </StackLayout>
+
 
 </ContentPage>
