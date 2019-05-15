@@ -6,6 +6,12 @@ add_executable(MobileServer
 	Server.cs
 	Properties/AssemblyInfo.cs
 )
+
+add_executable(MobileClient
+	CProgram.cs
+	Client.cs
+	Properties/CAssemblyInfo.cs
+)
 	
 set_property(TARGET MobileServer PROPERTY VS_DOTNET_REFERENCES
     "Microsoft.CSharp"
@@ -19,3 +25,17 @@ set_property(TARGET MobileServer PROPERTY VS_DOTNET_REFERENCES
     "WindowsBase"
 )
 	
+	
+set_property(TARGET MobileClient PROPERTY VS_DOTNET_REFERENCES
+    "Microsoft.CSharp"
+    "System"
+    "System.Core"
+    "System.Data"
+    "System.Data.DataSetExtensions"
+    "System.Net.Http"
+    "System.Xml"
+    "System.Xml.Linq"
+    "System.Net"
+    "WindowsBase"
+)
+    

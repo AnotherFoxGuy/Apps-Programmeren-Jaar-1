@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Week3_Client"
+             x:Class="Week3_Client.MainPage">
+    <StackLayout>
+        <Label Text="This is an app"/>
+        <Label x:Name="SomeText" Text="sdkhgjshjshjhjghjsgd"/>
+        <Label x:Name="test"/>
+        <Label x:Name="Tempature"/>
+    </StackLayout>
+</ContentPage>

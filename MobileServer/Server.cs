@@ -12,7 +12,7 @@ namespace MobileServer
         public static void StartListening()
         {
             byte[] bytes = new byte[1024];
-            IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
+            IPAddress ipAddress = IPAddress.Parse("141.252.209.92");
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
             Socket listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             try
@@ -28,6 +28,7 @@ namespace MobileServer
                     {
                         int bytesRec = handler.Receive(bytes);
                         data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        Console.WriteLine("Data " + data);
                         if (data.IndexOf("<TEMP>") > -1)
                         {
                             break;
