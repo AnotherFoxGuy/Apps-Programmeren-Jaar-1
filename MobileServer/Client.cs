@@ -21,16 +21,19 @@ namespace Week3_Client
 
         public void SetConnection(string ip, int port)
         {
+            Console.WriteLine("SetConnection to "+ip);
             iPAddress = IPAddress.Parse(ip);
             endPoint = new IPEndPoint(iPAddress, port);
         }
         public void OpenConnection()
         {
+            Console.WriteLine("OpenConnection");
             socket_Sender = new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             socket_Sender.Connect(endPoint);
         }
         public void CloseConnection()
         {
+            Console.WriteLine("CloseConnection");
             socket_Sender.Shutdown(SocketShutdown.Both);
             socket_Sender.Close();
         }
@@ -45,7 +48,7 @@ namespace Week3_Client
             SendData(dataToSend);
             var bytes = new byte[1024];
             int dataRecived = socket_Sender.Receive(bytes);
-            return Encoding.ASCII.GetString(bytes, 0, dataRecived).Split('>')[1] + "°C";
+            return Encoding.ASCII.GetString(bytes, 0, dataRecived);//.Split('>')[1] + "°C";; //
         }
     }
 }
