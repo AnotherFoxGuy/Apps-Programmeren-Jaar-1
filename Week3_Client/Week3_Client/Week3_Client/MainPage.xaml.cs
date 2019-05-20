@@ -20,7 +20,7 @@ namespace Week3_Client
         private void SetTimer()
         {
             SomeText.Text = "Timer Started";
-            Device.StartTimer(TimeSpan.FromSeconds(5), () =>
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 try
                 {

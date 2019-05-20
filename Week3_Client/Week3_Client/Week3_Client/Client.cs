@@ -14,7 +14,7 @@ namespace Week3_Client
         private readonly string dataToSend = "<TEMP>";        
         public Client()
         {
-            SetConnection("141.252.209.92", 11000);
+            SetConnection("192.168.1.5", 11000);
             //OpenConnection();
         }
 
