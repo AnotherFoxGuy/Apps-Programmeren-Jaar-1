@@ -46,7 +46,7 @@ namespace Week4
 
         public void AddSerie(string title, string description, int yearStarted, int yearEnded, int numberOfEpisodes, int numberOfSeasons)
         {
-            Connection.Insert(new Serie { Title = title, Description = description, YearStarted = yearStarted, YearEnded = yearEnded, NumberOfEpesodes = numberOfEpisodes, NumberOfSeasons = numberOfSeasons });
+            Connection.Insert(new Serie { Title = title, Description = description, YearStarted = yearStarted, YearEnded = yearEnded, numberOfEpisodes = numberOfEpisodes, NumberOfSeasons = numberOfSeasons });
         }
 
         public void AddUser(string username, string password)

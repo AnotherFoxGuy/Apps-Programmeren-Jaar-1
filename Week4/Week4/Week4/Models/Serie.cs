@@ -21,7 +21,7 @@ namespace Week4.Models
         public int YearEnded { get; set; }
 
         [NotNull]
-        public int NumberOfEpesodes { get; set; }
+        public int numberOfEpisodes { get; set; }
 
         [NotNull]
         public int NumberOfSeasons { get; set; }

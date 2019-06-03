@@ -44,7 +44,7 @@ namespace Week4.Views
 
         private void Add_Clicked(object sender, EventArgs e)
         {
-            if (HideSeries.IsVisible)
+            if (!HideSeries.IsVisible)
             {
                 if (String.IsNullOrEmpty(Title.Text))
                     DisplayAlert("Empty field", "Please enter a title", "OK");
@@ -53,7 +53,7 @@ namespace Week4.Views
                 else
                     databaseManager.AddMovie(Title.Text, Description.Text, int.Parse(Year.Text));
             }
-            if (!HideSeries.IsVisible)
+            if (HideSeries.IsVisible)
             {
                 if (String.IsNullOrEmpty(Title.Text))
                     DisplayAlert("Empty field", "Please enter a title", "OK");
